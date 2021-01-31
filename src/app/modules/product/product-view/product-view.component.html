@@ -1,0 +1,19 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header">View Product</h2>
+    <button class="header edit-button btn btn-secondary" (click)="editProduct()">Edit</button>
+  </header>
+  <div class="view_body">
+    <ul class="body product-properities">
+      <li>
+        <span class="product-property_wrap">Product ID: {{product.id}}</span>
+        <span class="product-property_wrap">Created date: {{product.createdDate | date:'d/M/yyyy'}}</span>
+      </li>
+      <li><span class="product-property_wrap">Product name: {{product.name}}</span></li>
+      <li><span class="product-property_wrap">Product Category: {{product.category | category}}</span></li>
+      <li><span class="product-property_wrap">Available Quantity: {{product.quantity}}</span></li>
+      <li><span class="product-property_wrap">Price: {{product.price}} $</span></li>
+      <li><span class="product-property_wrap">Description: {{product.description}}</span></li>
+    </ul>
+  </div>
+</div>

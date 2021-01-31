@@ -1,0 +1,52 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header">Add Product To Order</h2>
+  </header>
+  <div class="view_body">
+    <form class="item_form" [formGroup]="orderItemForm" (submit)="submit()">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product name:</label>
+        <div class="col-sm-4">
+          <select class="form-control" formControlName="productId" (change)="setProduct($event)">
+            <option value=null>Select product</option>
+            <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+          </select>
+          <div *ngIf="this.product.invalid && this.product.touched" class="error">
+            Please choose a product.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Quantity:</label>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" placeholder="Quantity" min=1 formControlName="count">
+          <div class="error" *ngIf="this.count.touched && this.count.errors?.required">
+            Please, input quantity.
+          </div>
+          <div class="error" *ngIf="this.count.errors?.min">
+            Please, input correct quantity.
+          </div>
+          <!-- <div class="error" *ngIf="this.quantity.errors.bigQuantity">
+            There is no such quantity of goods in stock
+          </div> -->
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product Size:</label>
+        <div class="col-sm-4">
+          <select class="form-control" formControlName="productSize">
+            <option selected value=null>Select product size</option>
+            <option *ngFor="let optionSize of keysSizes" [ngValue]="+optionSize">{{sizes[optionSize]}}</option>
+          </select>
+          <div *ngIf="this.productSize.invalid && this.productSize.touched" class="error">
+            Please choose a product size.
+          </div>
+        </div>
+      </div>
+      <div class="control_buttons">
+        <button type="submit" class="button-control btn btn-success" [disabled]="orderItemForm.invalid">Save</button>
+        <button class="button-control btn btn-danger">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

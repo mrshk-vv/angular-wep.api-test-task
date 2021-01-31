@@ -1,0 +1,64 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header">Edit Order</h2>
+  </header>
+  <div class="view_body">
+    <form class="item_form" [formGroup]="orderForm">
+      <div class="form-group row">
+        <label  class="col-sm-2 col-form-label">Order ID:</label>
+        <div class="col-sm-4">
+          <input type="text" readonly class="form-control-plaintext" formControlName="id">
+        </div>
+        <label class="col-sm-2 col-form-label">Created Date:</label>
+        <div class="col-sm-4">
+          <input type="text" readonly class="form-control-plaintext" formControlName="createdDate">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Customer:</label>
+        <div class="col-sm-4">
+          <select class="form-control" formControlName="customerId">
+            <option *ngFor="let customer of customers" [ngValue]="customer.id">{{customer.name}}</option>
+          </select>
+          <div *ngIf="this.customer.invalid && this.customer.touched" class="error">
+            Please, choose a customer.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Status:</label>
+        <div class="col-sm-4">
+          <select class="form-control" formControlName="status">
+            <option *ngFor="let optionStatus of keysStatuses" [value]="optionStatus">{{statuses[optionStatus]}}</option>
+          </select>
+          <div *ngIf="this.status.invalid && this.status.touched" class="error">
+            Please, choose order status.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Total Cost:</label>
+        <div class="col-sm-4">
+          <input formControlName="totalCost" readonly class="form-control-plaintext">
+        </div>
+      </div>
+
+      <div>
+        <a class="btn btn-primary product_to_order" [routerLink]="['/order/add-product']" >Add product to order</a>
+      </div>
+
+      <app-order-item-list [orderItems]="order.orderItems"></app-order-item-list>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Comment:</label>
+        <div class="col-sm-4">
+          <textarea cols="50" rows="5" formControlName="comment"></textarea>
+        </div>
+      </div>
+      <div class="control_buttons">
+        <button type="submit" class="button-control btn btn-success" [disabled]="orderForm.invalid" (click)="submit()">Save</button>
+        <button class="button-control btn btn-danger" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

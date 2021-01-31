@@ -1,0 +1,22 @@
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Product Id</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Product Category</th>
+      <th scope="col">Product Size</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let orderItem of orderItems">
+      <th scope="row">{{orderItem.product.id}}</th>
+      <td>{{orderItem.product.name}}</td>
+      <td>{{orderItem.product.category | category}}</td>
+      <td>{{orderItem.productSize | size}}</td>
+      <td>{{orderItem.count}}</td>
+      <td>{{orderItem.product.price}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Application.Exceptions;
 using Application.Helpers;
@@ -96,11 +95,11 @@ namespace Application.Services
             var newProductsInOrder = productsInOrder.Where(x => newProducts.Select(o => o.ProductId).Contains(x.Id)).ToList();
 
             orderToUpdate.TotalCost = OrderHelper.GetOrderTotalCost(orderModel.OrderItems, productsInOrder);
-            
+
             var updatedOrder = await _orderRepository.UpdateOrderAsync(oldOrder, orderToUpdate);
-            
+
             var productsToUpdateQuantity = ProductHelper.SetNewProductQuantities(newProductsInOrder, orderModel.OrderItems);
-            
+
             await _productRepository.UpdateProductsAsync(productsToUpdateQuantity);
 
             var result = await _orderRepository.GetOrderByIdAsync(updatedOrder.Id);

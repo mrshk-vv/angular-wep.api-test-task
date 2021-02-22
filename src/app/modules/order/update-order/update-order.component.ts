@@ -29,7 +29,6 @@ export class UpdateOrderComponent implements OnInit, OnDestroy {
               private router: Router) {
     activatedRoute.params.subscribe(params => this.orderId = params['id']).unsubscribe()
     if(this.orderId){
-      this.store.dispatch(getOrder({id: this.orderId}))
       this.order$ = this.store.select(getOrderSelector).subscribe(data => this.order = data)
       if(!this.order){
         this.router.navigate(['/order/detail', this.orderId])

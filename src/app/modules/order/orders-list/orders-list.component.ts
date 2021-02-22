@@ -6,6 +6,7 @@ import { getOrders, removeOrder } from 'src/app/store/actions/order.actions';
 import { OrderState } from 'src/app/store/reducers/order.reducer';
 import { getOrdersSelector } from 'src/app/store/selectors/order.selectors';
 import { Order } from '../resources/models/order.model';
+import { CartService } from '../resources/services/cart.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -18,7 +19,8 @@ export class OrdersListComponent implements OnInit, OnDestroy {
   orders: Order[]
 
   constructor(private store: Store<OrderState>,
-              private router: Router) { }
+              private router: Router,
+              private cartService: CartService) { }
   ngOnDestroy(): void {
     this.orders$.unsubscribe()
   }
@@ -26,6 +28,11 @@ export class OrdersListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(getOrders())
     this.orders$ = this.store.select(getOrdersSelector).subscribe(data => this.orders = data)
+  }
+
+  newOrder(){
+    this.cartService.createOrder()
+    this.router.navigate(['/order/create'])
   }
 
   viewOrder(order: Order): void{

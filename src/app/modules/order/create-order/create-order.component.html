@@ -3,7 +3,12 @@
     <h2 class="header header">New Order</h2>
   </header>
   <div class="view_body">
-    <form class="item_form" [formGroup]="orderForm" (submit)="submit()">
+    <app-order-form
+    [orderItems]="orderItems"
+    [order]="order"
+    (onSubmitOrder)="addOrder($event)"
+    ></app-order-form>
+    <!-- <form class="item_form" [formGroup]="orderForm" (submit)="submit()">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Customer:</label>
         <div class="col-sm-4">
@@ -51,6 +56,6 @@
         <button type="submit" class="button-control btn btn-success" [disabled]="orderForm.invalid || !this.orderItems">Save</button>
         <button class="button-control btn btn-danger" (click)="cancel()">Cancel</button>
       </div>
-    </form>
+    </form> -->
   </div>
 </div>

@@ -21,9 +21,13 @@ export class CartService {
     localStorage.setItem(this.cart, null)
   }
 
+  createOrder(): void {
+    this.clearOrder()
+    localStorage.setItem(this.order,JSON.stringify({ id: null}))
+  }
+
   clearOrder(): void{
-    localStorage.removeItem(this.order)
-    localStorage.removeItem(this.cart)
+    localStorage.clear()
   }
 
   set setCart(orderItems: OrderItem[]){
@@ -53,9 +57,11 @@ export class CartService {
     }else{
       this.orderItems = this.getCart
 
-      if(this.orderItems.find(i => i.productId === orderItem.product.id)){
-        let orderItemIndex = this.orderItems.findIndex(i => i.productId === orderItem.id)
-        this.orderItems[orderItemIndex].count += orderItem.count
+      const existingProductIndex = this.orderItems.findIndex(i => i.productId === orderItem.productId &&
+                                                                  i.productSize === orderItem.productSize)
+
+      if(existingProductIndex != null && existingProductIndex != -1){
+        this.orderItems[existingProductIndex].count += orderItem.count
       }else{
         this.orderItems.push(orderItem)
       }

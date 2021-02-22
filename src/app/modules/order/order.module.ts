@@ -15,6 +15,7 @@ import { OrdersItemListComponent } from './order-item-list/order-item-listcompon
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { UpdateOrderComponent } from './update-order/update-order.component';
 import { AddProductToOrderComponent } from './add-product-to-order/add-product-to-ordercomponent';
+import { OrderFormComponent } from './order-form/order-form.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,8 @@ const routes: Routes = [
     AddProductToOrderComponent,
     OrdersItemListComponent,
     CreateOrderComponent,
-    UpdateOrderComponent
+    UpdateOrderComponent,
+    OrderFormComponent
   ],
   imports: [
     CommonModule,

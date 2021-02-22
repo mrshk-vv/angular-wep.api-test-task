@@ -73,7 +73,7 @@ export class AddProductToOrderComponent implements OnInit, OnDestroy {
 
   submit(): void {
     let orderItem: OrderItem = this.orderItemForm.value
-    orderItem = {...orderItem, product: this.selectedProduct}
+    orderItem = { ...orderItem, product: this.selectedProduct }
 
     if (this.selectedProduct.quantity < orderItem.count) {
       alert('There is no such quantity of goods in stock')
@@ -81,15 +81,25 @@ export class AddProductToOrderComponent implements OnInit, OnDestroy {
     }
 
     if (this.order) {
-      orderItem.orderId = this.order.id
-      this.order = {
-        ...this.order,
-        orderItems: [
-        ...this.order.orderItems,
-        orderItem
-        ]
+      let existingProduct = this.order.orderItems.find(x => x.productId == orderItem.productId &&
+                                                            x.productSize == orderItem.productSize)
+
+      const index = this.order.orderItems.indexOf(existingProduct)
+
+      if (existingProduct) {
+        existingProduct = {...existingProduct, count: existingProduct.count + orderItem.count}
+        this.order = { ...this.order, orderItems: Object.assign([], this.order.orderItems, {[index]: existingProduct})}
+      } else {
+        orderItem.orderId = this.order.id
+        this.order = {
+          ...this.order,
+          orderItems: [
+            ...this.order.orderItems,
+            orderItem
+          ]
+        }
       }
-      this.store.dispatch(addProductToOrder({orderWithNewItem: this.order}))
+      this.store.dispatch(addProductToOrder({ orderWithNewItem: this.order }))
 
       this.router.navigate(['/order/edit', this.order.id])
     } else {

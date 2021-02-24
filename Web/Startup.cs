@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Application;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace Web
 {
@@ -25,15 +26,20 @@ namespace Web
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "Client/dist";
+            });
+
             services.InitializeApplication(_configuration);
 
             services.AddCors(opts =>
             {
                 opts.AddDefaultPolicy(x =>
                 {
-                        x.AllowAnyHeader()
-                         .AllowAnyMethod()
-                         .AllowAnyOrigin();
+                    x.AllowAnyHeader()
+                     .AllowAnyMethod()
+                     .AllowAnyOrigin();
                 });
             });
 
@@ -51,6 +57,8 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,17 +70,30 @@ namespace Web
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
             app.UseRouting();
 
-            app.UseCors();
-
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "Client";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
         }
     }

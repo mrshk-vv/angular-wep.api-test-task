@@ -1,0 +1,61 @@
+.greeting {
+  &_header {
+    font-weight: 600;
+  }
+
+  // .greeting_description
+
+  &_description {
+  }
+}
+.description {
+}
+.link {
+  color: #000000;
+  display: inline-block;
+  margin: 0 10px 0 10px;
+}
+
+
+
+.route {
+  &__tabs {
+    display: flex;
+    width: 100%;
+  }
+}
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex: 33.33%;
+  margin: 25px;
+  padding: 25px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #ffffff;
+  &:hover {
+    box-shadow: 1px 2px 4px #000000;
+    background-color: #ffffff;
+    transition: 0.1s;
+  }
+  color: #000000;
+}
+.order {
+}
+.tab-label {
+}
+.product {
+}
+.customer {
+}
+.console{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px 1px #000000;
+  width: 100%;
+  min-height: 70% !important;
+}

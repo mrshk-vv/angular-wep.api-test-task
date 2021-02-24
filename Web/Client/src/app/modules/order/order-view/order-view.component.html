@@ -1,0 +1,24 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header">View Order</h2>
+    <button class="header edit-button btn btn-secondary" (click)="editOrder()">Edit</button>
+  </header>
+  <div class="view_body">
+    <ul class="body product-properities">
+      <li>
+        <span class="product-property_wrap">Order ID: {{order.id}}</span>
+        <!-- <span class="product-property_wrap">Created date: {{order.createdDate | date:'d/M/yyyy'}}</span> -->
+      </li>
+      <li><span class="product-property_wrap">Customer: {{order.customer.name}}</span></li>
+      <li><span class="product-property_wrap">Status: {{order.status | status}}</span></li>
+      <li><span class="product-property_wrap">Total Cost: {{order.totalCost}} $</span></li>
+    </ul>
+    <app-order-item-list [orderItems]="order.orderItems"></app-order-item-list>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Comment:</label>
+      <div class="col-sm-4">
+        <textarea cols="50" rows="5" disabled value="{{order.comment}}" ></textarea>
+      </div>
+    </div>
+  </div>
+</div>

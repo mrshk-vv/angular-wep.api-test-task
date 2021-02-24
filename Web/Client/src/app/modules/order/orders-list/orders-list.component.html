@@ -1,0 +1,32 @@
+<div class="table_container">
+  <div class="header_list">
+    <h2 class="header_table">Orders</h2>
+    <a type="button" class="btn btn-primary header_button" (click)="newOrder()">New Order</a>
+  </div>
+
+  <table class="table">
+    <thead class="table table-bordered">
+      <tr>
+        <th scope="col">Order Number</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Customer Address</th>
+        <th scope="col">Total Cost</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{order.id}}</td>
+        <td>{{order.customer.name}}</td>
+        <td>{{order.customer.address}}</td>
+        <td>{{order.totalCost}}</td>
+        <td>{{order.status | status}}</td>
+        <td>
+          <button type="button" class="btn btn-info action" (click)="viewOrder(order)">Details</button>
+          <button type="button" class="btn btn-danger action" (click)="deleteOrder(order)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

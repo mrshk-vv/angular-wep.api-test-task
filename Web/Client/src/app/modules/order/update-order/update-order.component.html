@@ -1,0 +1,12 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header">Edit Order</h2>
+  </header>
+  <div class="view_body">
+    <app-order-form
+      [order]="order"
+      [orderItems]="order.orderItems"
+      (onSubmitOrder)="updateOrder($event)">
+    </app-order-form>
+  </div>
+</div>

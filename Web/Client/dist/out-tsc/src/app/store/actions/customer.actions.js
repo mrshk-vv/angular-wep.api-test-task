@@ -1,0 +1,35 @@
+import { createAction, props } from "@ngrx/store";
+export var CustomersActions;
+(function (CustomersActions) {
+    CustomersActions["GET_CUSTOMER"] = "[Customer] Get Customer";
+    CustomersActions["GET_CUSTOMER_SUCCESS"] = "[Customer] Get Customer Success";
+    CustomersActions["GET_CUSTOMER_FAILURE"] = "[Customer] Get Customer Failure";
+    CustomersActions["GET_CUSTOMERS"] = "[Customer] Get Customers";
+    CustomersActions["GET_CUSTOMERS_SUCCESS"] = "[Customer] Get Customers Success";
+    CustomersActions["GET_CUSTOMERS_FAILURE"] = "[Customer] Get Customers Failure";
+    CustomersActions["ADD_CUSTOMER"] = "[Customer] Add Customer";
+    CustomersActions["ADD_CUSTOMER_SUCCESS"] = "[Customer] Add Customer Success";
+    CustomersActions["ADD_CUSTOMER_FAILURE"] = "[Customer] Add Customer Failure";
+    CustomersActions["REMOVE_CUSTOMER"] = "[Customer] Remove Customer";
+    CustomersActions["REMOVE_CUSTOMER_SUCCESS"] = "[Customer] Remove Customer Success";
+    CustomersActions["REMOVE_CUSTOMER_FAILURE"] = "[Customer] Remove Customer Failure";
+    CustomersActions["UPDATE_CUSTOMER"] = "[Customer] Update Customer";
+    CustomersActions["UPDATE_CUSTOMER_SUCCESS"] = "[Customer] Update Customer Success";
+    CustomersActions["UPDATE_CUSTOMER_FAILURE"] = "[Customer] Update Customer Failure";
+})(CustomersActions || (CustomersActions = {}));
+export const getCustomer = createAction(CustomersActions.GET_CUSTOMER, props());
+export const getCustomerSuccess = createAction(CustomersActions.GET_CUSTOMER_SUCCESS, props());
+export const getCustomerFailure = createAction(CustomersActions.GET_CUSTOMER_FAILURE, props());
+export const getCustomers = createAction(CustomersActions.GET_CUSTOMERS);
+export const getCustomersSuccess = createAction(CustomersActions.GET_CUSTOMERS_SUCCESS, props());
+export const getCustomersFailure = createAction(CustomersActions.GET_CUSTOMERS_FAILURE, props());
+export const addCustomer = createAction(CustomersActions.ADD_CUSTOMER, props());
+export const addCustomerSuccess = createAction(CustomersActions.ADD_CUSTOMER_SUCCESS, props());
+export const addCustomerFailure = createAction(CustomersActions.ADD_CUSTOMER_FAILURE, props());
+export const updateCustomer = createAction(CustomersActions.UPDATE_CUSTOMER, props());
+export const updateCustomerSuccess = createAction(CustomersActions.UPDATE_CUSTOMER_SUCCESS, props());
+export const updateCustomerFailure = createAction(CustomersActions.UPDATE_CUSTOMER_FAILURE, props());
+export const removeCustomer = createAction(CustomersActions.REMOVE_CUSTOMER, props());
+export const removeCustomerSuccess = createAction(CustomersActions.REMOVE_CUSTOMER_SUCCESS);
+export const removeCustomerFailure = createAction(CustomersActions.REMOVE_CUSTOMER_FAILURE, props());
+//# sourceMappingURL=customer.actions.js.map

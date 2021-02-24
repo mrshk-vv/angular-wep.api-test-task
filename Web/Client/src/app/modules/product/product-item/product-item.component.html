@@ -1,0 +1,70 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header"></h2>
+  </header>
+  <div class="view_body">
+    <form class="item_form" [formGroup]="productForm" (submit)="submit()">
+      <input type="hidden" formControlName="id" *ngIf="!this.productId">
+      <div class="form-group row" *ngIf="this.productId">
+        <label class="col-sm-2 col-form-label">Product number:</label>
+        <div class="col-sm-4">
+          <input type="text" readonly class="form-control-plaintext" formControlName="id">
+        </div>
+        <label class="col-sm-2 col-form-label">Created Date:</label>
+        <div class="col-sm-4">
+          <input type="text" readonly class="form-control-plaintext" formControlName="createdDate">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product name:</label>
+        <div class="col-sm-4">
+          <input class="form-control" placeholder="Product name" formControlName="name">
+          <div *ngIf="this.name.invalid && this.name.touched" class="error">
+            Please provide a name.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Product Category:</label>
+        <div class="col-sm-4">
+          <select class="form-control" formControlName="category">
+            <option [ngValue]="null" selected>Select category</option>
+            <option *ngFor="let optionCategory of keysCategories" [ngValue]="optionCategory">{{categories[optionCategory]}}</option>
+          </select>
+          <div *ngIf="this.category.invalid && this.category.touched" class="error">
+            Please choose a category.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Avaliable Quantity:</label>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" placeholder="Quantity" min=1 formControlName="quantity">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Price:</label>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" placeholder="Price" min=1 formControlName="price">
+          <div class="error" *ngIf="this.price.invalid && this.price.touched">
+            Please, input price.
+          </div>
+          <div class="error" *ngIf="this.price.errors?.min">
+            Please, input correct price.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Description:</label>
+        <div class="col-sm-4">
+          <textarea cols="50" rows="5" formControlName="description"></textarea>
+        </div>
+      </div>
+      <div class="control_buttons">
+        <button type="submit" class="button-control btn btn-success" [disabled]="productForm.invalid">Save</button>
+        <button class="button-control btn btn-danger" (click)="cancel()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

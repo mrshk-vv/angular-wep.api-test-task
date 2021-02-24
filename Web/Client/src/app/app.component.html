@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="greeting">
+    <h1 class="greeting_header">Angular + ASP.NET Core Test Task</h1>
+    <div class="greeting_description">
+      <h2>The task was completed by Murashko Vladimir</h2>
+      <a class="description link" target="_blank" href="https://github.com/mrshk-vv"><i class="fab fa-github"></i> GitHub</a>
+      <a class="description link" target="_blank" href="https://www.linkedin.com/in/%D0%B2%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80-%D0%BC%D1%83%D1%80%D0%B0%D1%88%D0%BA%D0%BE-3393121b8/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+  <div class="route__tabs">
+    <a class="tab order" [routerLink]="['/orders']">
+      <span class="tab-label"><mat-icon>bookmark_border</mat-icon> Orders</span>
+    </a>
+    <a class="tab product" [routerLink]="['/products']">
+      <span class="tab-label"><mat-icon>local_dining</mat-icon> Products</span>
+    </a>
+    <a class="tab customer" [routerLink]="['/customers']">
+      <span class="tab-label"><mat-icon>face</mat-icon> Customers</span>
+    </a>
+  </div>
+  <div class="console">
+    <router-outlet></router-outlet>
+  </div>
+</div>

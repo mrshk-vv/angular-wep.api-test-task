@@ -54,19 +54,19 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     this.customers$ = this.store.select(getCustomersSelector).subscribe(data => this.customers = data)
 
     if(this.order){
-      this.populateOrderForm(this.order)
+      this.populateOrderForm()
     }else{
       this.initOrderForm()
     }
   }
 
-  populateOrderForm(order: Order): void {
+  populateOrderForm(): void {
     this.orderForm.patchValue({
-      id: order.id,
-      customerId: order.customerId,
-      status: order.status,
-      totalCost: order.totalCost,
-      comment: order.comment
+      id: this.order.id,
+      customerId: this.order.customerId,
+      status: this.order.status,
+      totalCost: this.order.totalCost,
+      comment: this.order.comment
     })
   }
 

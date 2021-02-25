@@ -29,7 +29,7 @@
         <div class="col-sm-4">
           <select class="form-control" formControlName="category">
             <option [ngValue]="null" selected>Select category</option>
-            <option *ngFor="let optionCategory of keysCategories" [ngValue]="optionCategory">{{categories[optionCategory]}}</option>
+            <option *ngFor="let optionCategory of keysCategories" [ngValue]="+optionCategory">{{categories[optionCategory]}}</option>
           </select>
           <div *ngIf="this.category.invalid && this.category.touched" class="error">
             Please choose a category.

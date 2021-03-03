@@ -1,10 +1,18 @@
-﻿using Core.Enums;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Core.Enums;
 
 namespace Core.Entities
 {
-    public class Product: BaseEntity
+    public class Product: IBaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public string Id { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+        
         public string Name { get; set; }
 
         public Category Category { get; set; }

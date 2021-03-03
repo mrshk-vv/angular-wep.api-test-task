@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Application.Models.Customer;
 using ApplicationException = Application.Exceptions.ApplicationException;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

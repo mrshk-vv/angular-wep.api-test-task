@@ -1,5 +1,6 @@
-import { Component} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, ViewChild} from '@angular/core';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'angular-client';
 
-  constructor(private router: Router) {
+  constructor() {}
+
+  changeActiveTab(): void {
 
   }
-
 
 }

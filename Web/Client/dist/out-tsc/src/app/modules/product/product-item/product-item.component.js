@@ -43,7 +43,7 @@ let ProductItemComponent = class ProductItemComponent {
             id: this.productId,
             createdDate: this.product.createdDate,
             name: this.product.name,
-            category: this.product.category.valueOf(),
+            category: this.product.category,
             price: this.product.price,
             quantity: this.product.quantity,
             description: this.product.description

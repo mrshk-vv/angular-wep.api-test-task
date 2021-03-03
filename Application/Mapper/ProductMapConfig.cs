@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Application.Mapper
 {
-    internal class ProductMapConfig: Profile
+    public class ProductMapConfig: Profile
     {
         public ProductMapConfig()
         {

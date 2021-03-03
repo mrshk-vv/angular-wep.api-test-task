@@ -14,6 +14,7 @@ let OrderViewComponent = class OrderViewComponent {
         this.order$.unsubscribe();
     }
     ngOnInit() {
+        console.log(this.order);
         this.store.dispatch(getOrder({ id: this.orderId }));
     }
     editOrder() {

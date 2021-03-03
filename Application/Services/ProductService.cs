@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Errors;
 using Application.Exceptions;
 using Application.Interfaces;
 using Application.Models.Product;
 using AutoMapper;
 using Core.Entities;
+using Core.Enums;
 using Core.Repositories;
 
 namespace Application.Services
@@ -34,27 +36,28 @@ namespace Application.Services
             return _mapper.Map<List<Product>, List<ProductModel>>(products);
         }
 
+
         public async Task<ProductModel> GetProductByIdAsync(string productId)
         {
-            if (string.IsNullOrEmpty(productId))
-            {
+            if (string.IsNullOrEmpty(productId) || string.IsNullOrWhiteSpace(productId))
                 throw new ApplicationException($"Product Id is wrong");
-            }
+
+            var productExist = await _productRepository.IsProductExist(productId);
+            if (!productExist)
+                throw new ApplicationException($"Product with Id : {productId} is not exist");
 
             var product = await _productRepository.GetProductByIdAsync(productId);
-
-            if (product is null)
-            {
-                throw new ApplicationException($"Customer with Id : {productId} is not exist");
-            }
 
             return _mapper.Map<Product, ProductModel>(product);
         }
 
         public async Task<ProductModel> AddProductAsync(ProductModel productModel)
         {
-            var product = _mapper.Map<ProductModel, Product>(productModel);
+            var checkProductData = InvalidProductInfo(productModel);
+            if (checkProductData.result)
+                throw new ApplicationException($"{checkProductData.message.ToString()}");
 
+            var product = _mapper.Map<ProductModel, Product>(productModel);
             var addedProduct = await _productRepository.AddProductAsync(product);
 
             return _mapper.Map<Product, ProductModel>(addedProduct);
@@ -67,28 +70,53 @@ namespace Application.Services
 
         public async Task<ProductModel> UpdateProductAsync(ProductModel productModel)
         {
+            if (string.IsNullOrEmpty(productModel.Id) || string.IsNullOrWhiteSpace(productModel.Id))
+                throw new ApplicationException("Please create a product first before editing it");
+            
+            var productExist = await _productRepository.IsProductExist(productModel.Id);
+            if (!productExist)
+                throw new ApplicationException("You want to edit a non-existent product");
+            
+            var checkProductData = InvalidProductInfo(productModel);
+            if (checkProductData.result)
+                throw new ApplicationException($"{checkProductData.message.ToString()}");
+            
             var product = _mapper.Map<ProductModel, Product>(productModel);
-
             var updatedProduct = await _productRepository.UpdateProductAsync(product);
 
             return _mapper.Map<Product, ProductModel>(updatedProduct);
         }
 
-        public async Task RemoveProductAsync(string productId)
+        public async Task<bool> RemoveProductAsync(string productId)
         {
-            if (string.IsNullOrEmpty(productId))
-            {
-                throw new ApplicationException("Product Id is not exist");
-            }
+            if (string.IsNullOrEmpty(productId) || string.IsNullOrWhiteSpace(productId))
+                throw new ApplicationException("Product Id is wrong");
 
+            var productExist = await _productRepository.IsProductExist(productId);
+            if (!productExist)
+                throw new ApplicationException($"Product with Id : {productId} does not exist");
+            
             var product = await _productRepository.GetProductByIdAsync(productId);
+            var result = await _productRepository.RemoveProductAsync(product);
 
-            if (product is null)
-            {
-                throw new ApplicationException($"Product with Id : {productId} is not exist");
-            }
+            return result;
+        }
 
-            await _productRepository.RemoveProductAsync(product);
+        private (bool result, ProductsInvalidInputDataErrors message) InvalidProductInfo(ProductModel product)
+        {
+            if (string.IsNullOrEmpty(product.Name) || string.IsNullOrWhiteSpace(product.Name))
+                return (true, ProductsInvalidInputDataErrors.IncorrectProductName);
+
+            if (product.Quantity == 0)
+                return (true, ProductsInvalidInputDataErrors.IncorrectProductQuantity);
+
+            if (product.Price <= 0)
+                return (true, ProductsInvalidInputDataErrors.IncorrectProductPrice);
+
+            if (product.Category == Category.None)
+                return (true, ProductsInvalidInputDataErrors.IncorrectProductCategory);
+
+            return (false, ProductsInvalidInputDataErrors.None);
         }
     }
 }

@@ -1,10 +1,18 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Core.Enums;
 
 namespace Core.Entities
 {
-    public class OrderItem: BaseEntity, IEquatable<OrderItem>
+    public class OrderItem: IBaseEntity, IEquatable<OrderItem>
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public string Id { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        
         public string ProductId { get; set; }
         
         public virtual Product Product { get; set; }

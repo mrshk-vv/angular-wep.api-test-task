@@ -15,12 +15,14 @@ namespace Core.Repositories
 
         Task<Product> GetProductByIdAsync(string id);
 
+        Task<bool> IsProductExist(string id);
+
         Task<Product> AddProductAsync(Product product);
 
         Task<Product> UpdateProductAsync(Product product);
 
         Task UpdateProductsAsync(List<Product> products);
 
-        Task RemoveProductAsync(Product product);
+        Task<bool> RemoveProductAsync(Product product);
     }
 }

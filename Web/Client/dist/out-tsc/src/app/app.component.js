@@ -1,9 +1,10 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let AppComponent = class AppComponent {
-    constructor(router) {
-        this.router = router;
+    constructor() {
         this.title = 'angular-client';
+    }
+    changeActiveTab() {
     }
 };
 AppComponent = __decorate([

@@ -30,6 +30,7 @@ export class OrderViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.order)
     this.store.dispatch(getOrder({id: this.orderId}))
   }
 

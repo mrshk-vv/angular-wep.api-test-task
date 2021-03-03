@@ -19,7 +19,7 @@ namespace Application.Interfaces
 
         Task<ProductModel> UpdateProductAsync(ProductModel productModel);
 
-        Task RemoveProductAsync(string productId);
+        Task<bool> RemoveProductAsync(string productId);
 
     }
 }

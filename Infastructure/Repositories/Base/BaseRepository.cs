@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Core.Entities;
 using Core.Repositories.Base;
 using Infastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Base
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+
+    public class BaseRepository<T> : IBaseRepository<T> where T : class, IBaseEntity
     {
         protected readonly ShopContext _shopContext;
         private readonly DbSet<T> _dbSet;
@@ -30,6 +32,11 @@ namespace Infrastructure.Repositories.Base
         public async Task<List<T>> GetAllAsNoTracking()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<bool> IsExist(string id)
+        {
+            return await _dbSet.AnyAsync(x => x.Id == id);
         }
 
         public async Task<T> Add(T entity)
@@ -58,7 +65,7 @@ namespace Infrastructure.Repositories.Base
         {
             _dbSet.Remove(entity);
 
-            await _shopContext.SaveChangesAsync();
+            _shopContext.SaveChangesAsync();
         }
     }
 }

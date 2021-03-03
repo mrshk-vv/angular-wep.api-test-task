@@ -4,7 +4,7 @@ using Core.Entities;
 
 namespace Application.Mapper
 {
-    internal class OrderMapConfig: Profile
+    public class OrderMapConfig: Profile
     {
         public OrderMapConfig()
         {

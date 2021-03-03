@@ -12,6 +12,8 @@ namespace Core.Repositories.Base
 
         Task<List<T>> GetAllAsNoTracking();
 
+        Task<bool> IsExist(string id);
+
         Task<T> Add(T entity);
         
         Task<T> Update(T entity);

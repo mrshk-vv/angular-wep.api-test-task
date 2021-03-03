@@ -17,7 +17,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     NgModule({
         declarations: [
-            AppComponent,
+            AppComponent
         ],
         imports: [
             BrowserModule,

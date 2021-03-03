@@ -5,6 +5,7 @@ using Core.Entities;
 using Core.Repositories;
 using Infastructure.Data;
 using Infrastructure.Repositories.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -33,6 +34,11 @@ namespace Infrastructure.Repositories
             return await GetById(id);
         }
 
+        public async Task<bool> IsProductExist(string id)
+        {
+            return await IsExist(id);
+        }
+
         public async Task<Product> AddProductAsync(Product product)
         {
             return await Add(product);
@@ -48,9 +54,16 @@ namespace Infrastructure.Repositories
             await UpdateRange(products);
         }
 
-        public async Task RemoveProductAsync(Product product)
+        public async Task<bool> RemoveProductAsync(Product product)
         {
-            await Remove(product);
+            var result = Remove(product);
+            if (result.IsCompletedSuccessfully)
+            {
+                await result;
+                return true;
+            }
+
+            return false;
         }
     }
 }

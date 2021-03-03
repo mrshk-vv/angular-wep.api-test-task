@@ -8,13 +8,22 @@
     </div>
   </div>
   <div class="route__tabs">
-    <a class="tab order" [routerLink]="['/orders']">
+    <a class="tab order"
+       [routerLink]="['/orders']"
+       routerLinkActive="active"
+    >
       <span class="tab-label"><mat-icon>bookmark_border</mat-icon> Orders</span>
     </a>
-    <a class="tab product" [routerLink]="['/products']">
+    <a class="tab product"
+       [routerLink]="['/products']"
+       routerLinkActive="active"
+    >
       <span class="tab-label"><mat-icon>local_dining</mat-icon> Products</span>
     </a>
-    <a class="tab customer" [routerLink]="['/customers']">
+    <a class="tab customer"
+       [routerLink]="['/customers']"
+       routerLinkActive="active"
+    >
       <span class="tab-label"><mat-icon>face</mat-icon> Customers</span>
     </a>
   </div>

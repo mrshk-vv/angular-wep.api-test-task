@@ -1,0 +1,34 @@
+<div class="view">
+  <header class="view_header">
+    <h2 class="header header">New Customer</h2>
+  </header>
+  <div class="view_body">
+    <form class="item_form" [formGroup]="customerForm" (submit)="submit()">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name:</label>
+        <div class="col-sm-4">
+          <input class="form-control" placeholder="Name" formControlName="name">
+          <div *ngIf="this.name.invalid && this.name.touched" class="error">
+            Please provide a name.
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Address:</label>
+        <div class="col-sm-4">
+          <textarea cols="50" rows="5" formControlName="address"></textarea>
+          <div *ngIf="this.address.errors?.required && this.address.touched" class="error">
+            Please provide address.
+          </div>
+          <div *ngIf="this.address.errors?.minlength && this.address.touched" class="error">
+            You entered too short an address.
+          </div>
+        </div>
+      </div>
+      <div class="control_buttons">
+        <button type="submit" class="button-control btn btn-success" [disabled]="this.customerForm.invalid">Save</button>
+        <a class="button-control btn btn-danger" [routerLink]="['/customers']">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

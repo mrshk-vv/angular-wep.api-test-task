@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{53ADDF29-3F1E-4C69-90C7-DFF8C3A7CCE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{639ED24B-7DDA-4081-90B9-C090489F4585}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Presentation", "WebApi.Presentation\WebApi.Presentation.csproj", "{639ED24B-7DDA-4081-90B9-C090489F4585}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{50E4C25C-81A1-4240-954F-6EAD9CDDCF69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Application", "WebApi.Application\WebApi.Application.csproj", "{50E4C25C-81A1-4240-954F-6EAD9CDDCF69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{BC2224F6-0CE9-443D-93E4-5772B7BB7FEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Core", "WebApi.Core\WebApi.Core.csproj", "{BC2224F6-0CE9-443D-93E4-5772B7BB7FEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infastructure\Infrastructure.csproj", "{188995A0-7A0A-4919-96DB-2CBBD58CAE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Infrastructure", "WebApi.Infastructure\WebApi.Infrastructure.csproj", "{188995A0-7A0A-4919-96DB-2CBBD58CAE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F00ECB65-26FA-4621-A892-092F5B160AEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Tests", "WebApi.Tests\WebApi.Tests.csproj", "{F00ECB65-26FA-4621-A892-092F5B160AEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

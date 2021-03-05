@@ -1,0 +1,171 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-align-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font: 13px/18px Tahoma, sans-serif, Arial, Helveticas;
+}
+div {
+  font: 13px/18px Tahoma, sans-serif, Arial, Helveticas;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  background: 0 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; -moz-transform: scale(0.7);}
+
+.table_container{
+  padding: 25px;
+  height: calc(75vh - 129px);
+  overflow-y: auto;
+  .header_list{
+    .header_table{
+      display: inline;
+      color: #0080ff;
+      float: left;
+    }
+    .header_button{
+      float: right;
+    }
+  }
+}
+
+.action{
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+
+
+.view {
+  .view_header {
+    padding-left: 20px;
+    .header {
+      display: inline;
+      float: left;
+      color: #0080ff;
+    }
+    .header.edit-button {
+      float: right;
+      color: #ffffff;
+    }
+  }
+  padding: 15px;
+  .view_body {
+    clear: both;
+    .body.product-properities {
+      .product-property_wrap {
+        display: inline-block;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+
+.item_form{
+  padding: 0px 25px;
+  .control_buttons{
+    float: right;
+    margin: 0 0 25px 0;
+    .button-control{
+      margin: 0 15px 0 15px;
+      min-width: 58px;
+    }
+  }
+  .col-form-label{
+    font-weight: 700;
+  }
+}
+
+
+.error{
+  color: red;
+}
+
+#body{
+  zoom: 75%;
+  }
